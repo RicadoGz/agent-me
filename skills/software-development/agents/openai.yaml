@@ -1,0 +1,4 @@
+interface:
+  display_name: "Software Development Combo"
+  short_description: "Select navigation, development, testing and review skills"
+  default_prompt: "Use $software-development and select the capabilities this task needs from its skill catalog."
