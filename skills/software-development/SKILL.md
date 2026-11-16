@@ -9,6 +9,14 @@ Read [SKILLS.md](SKILLS.md) first. Select the stages needed for the actual reque
 
 The approved selections are Serena, Matt Pocock grilling, Superpowers subagent development, Playwright planner and generator, Superpowers verification, and Matt Pocock code review. Other vendored Superpowers folders are supporting dependencies. Source versions and hashes are in [sources.json](sources.json).
 
+## Plan ownership and handoff
+
+Each assigned owner maintains its own function subplan throughout the work. At implementation or integration completion, a verification result, a blocker, a material decision or a handoff, update its current status, observed evidence and limits, and next concrete action before reporting the checkpoint or taking the next dependent function. Keep the top status consistent with the current checkpoint and identify superseded records as history. Source implementation, integration, observed behavior and formal acceptance remain separate claims.
+
+Include the owned plan path and update responsibility in every worker assignment. For a handoff to a different agent, the outgoing owner records the exact source reference, completed and remaining scope, relevant checks, unresolved evidence and next action in that plan. The incoming agent reads it, records the transfer of responsibility and continues maintaining it. A chat reply or shared summary does not replace the owner's plan update.
+
+The coordinator maintains shared progress, parent checkpoints and indexes from owner deliveries. Check the actual owned plan changes when reviewing a delivery; return missing or stale updates to that owner. Preserve narrow file ownership so concurrent workers do not overwrite shared records. Existing publication permissions and necessary test limits still apply.
+
 ## Navigation and requirements
 
 For existing code, use Serena to locate relevant symbols and references before splitting implementation work. Read [references/serena.md](references/serena.md) for activation. Report unavailable semantic navigation accurately; use repository search to make independent progress when possible.
