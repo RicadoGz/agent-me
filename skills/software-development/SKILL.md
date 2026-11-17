@@ -11,11 +11,7 @@ The approved selections are Serena, Matt Pocock grilling, Superpowers subagent d
 
 ## Plan ownership and handoff
 
-Each assigned owner maintains its own function subplan throughout the work. At implementation or integration completion, a verification result, a blocker, a material decision or a handoff, update its current status, observed evidence and limits, and next concrete action before reporting the checkpoint or taking the next dependent function. Keep the top status consistent with the current checkpoint and identify superseded records as history. Source implementation, integration, observed behavior and formal acceptance remain separate claims.
-
-Include the owned plan path and update responsibility in every worker assignment. For a handoff to a different agent, the outgoing owner records the exact source reference, completed and remaining scope, relevant checks, unresolved evidence and next action in that plan. The incoming agent reads it, records the transfer of responsibility and continues maintaining it. A chat reply or shared summary does not replace the owner's plan update.
-
-The coordinator maintains shared progress, parent checkpoints and indexes from owner deliveries. Check the actual owned plan changes when reviewing a delivery; return missing or stale updates to that owner. Preserve narrow file ownership so concurrent workers do not overwrite shared records. Existing publication permissions and necessary test limits still apply.
+Read and apply [Ricardo's reusable development instructions](references/ricardo-development-rules.md) before loading workflow components. They define implementation first with TDD disabled, necessary tests, continuous owner plan maintenance and explicit agent handoffs. Preserve these user requirements when a vendored component prescribes a different process. Record newly confirmed reusable instructions in that reference; product requirements belong in the project's plan.
 
 ## Navigation and requirements
 

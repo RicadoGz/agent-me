@@ -2,6 +2,8 @@
 
 For software implementation, feature development or onboarding an existing codebase, first read [the skill catalog](skills/software-development/SKILLS.md), then load the relevant parts of [the combination](skills/software-development/SKILL.md).
 
+Read [Ricardo's reusable development instructions](skills/software-development/references/ricardo-development-rules.md) when using this template. Keep his confirmed workflow requests current there and apply them to delegated agents; these are agent collaboration rules, not application behavior tracking.
+
 Select capabilities as the task progresses. Preserve confirmed requirements and use independent implementation, test authoring, verification and review roles where the task needs them.
 
 For delegated work, follow [plan ownership and handoff](skills/software-development/SKILL.md#plan-ownership-and-handoff): each owner continuously maintains its own subplan and the coordinator maintains shared progress. Carry the plan path and update responsibility into every worker assignment.

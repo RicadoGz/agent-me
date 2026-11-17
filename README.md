@@ -22,6 +22,8 @@ Start with the [skill catalog](skills/software-development/SKILLS.md). The [comb
 
 ## Working principles
 
+[Ricardo's development instructions](skills/software-development/references/ricardo-development-rules.md) preserve confirmed workflow requests for future projects, including no TDD and continuous owner plan updates. The repository instructions and skill catalog load this shared reference.
+
 Read existing context before asking questions. Preserve decisions the user has already made. Return unresolved product and acceptance decisions to the user while handling routine implementation details autonomously.
 
 Keep feature implementation, acceptance test ownership, verification and review separate. A failing test that exposes a product defect goes back to the implementation owner.

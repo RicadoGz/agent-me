@@ -1,6 +1,6 @@
 # Software Development Skill Catalog
 
-Read this catalog before selecting tools for a software development task. Choose only the stages relevant to the current request, then open their instructions.
+Read this catalog before selecting tools for a software development task. Choose only the stages relevant to the current request, then open their instructions. Apply [Ricardo's reusable development instructions](references/ricardo-development-rules.md), including no TDD and necessary tests only, before following component templates.
 
 1. **Code navigation: Serena.** Locate functions, classes and references to understand where behavior lives and what a change could affect. Use it when reading or changing existing code, following the [setup and activation notes](references/serena.md).
 
