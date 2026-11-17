@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plan Decomposition and Function Map"
+  short_description: "Split plans into small functions, subplans and maps"
+  default_prompt: "Use $plan-decomposition to give every independently verifiable function its own maintained SUBPLAN.md, generate compact PROGRESS.md, PLAN.md and MAP.md, and preserve owner checkpoint updates throughout execution."
