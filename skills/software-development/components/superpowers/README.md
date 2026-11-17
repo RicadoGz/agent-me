@@ -39,7 +39,7 @@ It starts from the moment you fire up your coding agent. As soon as it sees that
 
 Once it's teased a spec out of the conversation, it shows it to you in chunks short enough to actually read and digest. 
 
-After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. It emphasizes true red/green TDD, YAGNI (You Aren't Gonna Need It), and DRY. 
+After you've signed off on the design, your agent puts together an implementation plan that's clear enough for an enthusiastic junior engineer with poor taste, no judgement, no project context, and an aversion to testing to follow. This local package implements approved behavior first and uses only necessary behavior or regression checks, alongside YAGNI and DRY.
 
 Next up, once you say "go", it launches a *subagent-driven-development* process, having agents work through each engineering task, inspecting and reviewing their work, and continuing forward. It's not uncommon for your agent to work autonomously for a couple hours at a time without deviating from the plan you put together.
 
@@ -315,11 +315,9 @@ Restart any active Muse sessions after installing so the `SessionStart` hook tak
 
 4. **subagent-driven-development** or **executing-plans** - Activates with plan. Either dispatches a fresh subagent per task with a review after each (most thorough), or implements every task inline in the current session with one fresh review of the whole branch at the end (cheapest).
 
-5. **test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
+5. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
 
-6. **requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
-
-7. **finishing-a-development-branch** - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
+6. **finishing-a-development-branch** - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
 
 **The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
 
@@ -341,8 +339,9 @@ Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of t
 
 ### Skills Library
 
-**Testing**
-- **test-driven-development** - RED-GREEN-REFACTOR cycle (includes testing anti-patterns reference)
+**Validation**
+
+Implement approved behavior first, then use existing checks and add only necessary behavior or regression coverage.
 
 **Debugging**
 - **systematic-debugging** - 4-phase root cause process (includes root-cause-tracing, defense-in-depth, condition-based-waiting techniques)
@@ -366,7 +365,6 @@ Superpowers is built by [Jesse Vincent](https://blog.fsck.com) and the rest of t
 
 ## Philosophy
 
-- **Test-Driven Development** - Write tests first, always
 - **Systematic over ad-hoc** - Process over guessing
 - **Complexity reduction** - Simplicity as primary goal
 - **Evidence over claims** - Verify before declaring success

@@ -17,7 +17,7 @@ description: Use when about to claim work is complete, fixed, or passing, before
 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-If you haven't run the verification command in this message, you cannot claim it passes.
+Use evidence for the actual code being assessed. Reuse a completed check when its relevant code and configuration are unchanged. Run another check only after relevant changes, failures or unresolved concerns. Select manual or integrity checks when they adequately cover the change.
 
 ## The Gate Function
 
@@ -25,7 +25,7 @@ If you haven't run the verification command in this message, you cannot claim it
 BEFORE claiming any status or expressing satisfaction:
 
 1. IDENTIFY: What command proves this claim?
-2. RUN: Execute the FULL command (fresh, complete)
+2. RUN: Use existing evidence for unchanged inputs, or run the necessary relevant check
 3. READ: Full output, check exit code, count failures
 4. VERIFY: Does output confirm the claim?
    - If NO: State actual status with evidence
@@ -43,7 +43,7 @@ Skip any step = lying, not verifying
 | Linter clean | Linter output: 0 errors | Partial check, extrapolation |
 | Build succeeds | Build command: exit 0 | Linter passing, logs look good |
 | Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
-| Regression test works | Red-green cycle verified | Test passes once |
+| Regression coverage is relevant | Assertions cover the reported behavior and observed result | Merely naming a test |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
 
@@ -79,11 +79,9 @@ Skip any step = lying, not verifying
 ❌ "Should pass now" / "Looks correct"
 ```
 
-**Regression tests (TDD Red-Green):**
-```
-✅ Write → Run (pass) → Revert fix → Run (MUST FAIL) → Restore → Run (pass)
-❌ "I've written a regression test" (without red-green verification)
-```
+**Necessary regression coverage:**
+
+Implement the fix, reuse existing coverage, and add a focused behavior assertion only if a material gap remains. Run the relevant check and report its actual result. Keep the implementation intact while validating it.
 
 **Build:**
 ```

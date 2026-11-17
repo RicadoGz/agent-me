@@ -6,6 +6,47 @@ The agent reads a skill catalog, selects the capabilities needed for the current
 
 Start with the [skill catalog](skills/software-development/SKILLS.md). The [combination entrypoint](skills/software-development/SKILL.md) explains how the roles work together.
 
+## Default development workflow
+
+Every independently delivered function has its own directory and maintained `SUBPLAN.md`. This is the implementation and handoff document used by its responsible agent. Start from compact progress and that plan; read broader source plans only when the current task leaves an actual question.
+
+```text
+plans/<project>/
+  PROGRESS.md
+  PLAN.md
+  MAP.md
+  manifest.json
+  functions/<id>_<slug>/SUBPLAN.md
+```
+
+1. Decompose the confirmed scope into small independently verifiable functions, with inputs, outputs, dependencies, owned files and acceptance.
+2. Assign each function and its plan to a responsible agent. Use fresh scoped implementers and independent verification or review when appropriate to the work.
+3. Implement first. TDD is disabled; reuse sufficient checks and add only necessary tests for a meaningful behavior or regression gap.
+4. At meaningful checkpoints the owner updates the same plan's status, actual evidence, remaining acceptance and next action before reporting or starting dependent work.
+5. The coordinator verifies those edits and synchronizes compact progress, the parent checkpoint and changed PLAN.md or MAP.md entries. Preserve earlier evidence and hand edited plans.
+6. Where publication is authorized, commit and push each focused function and verify its remote SHA before its next dependent function. Keep publication, integration and actual acceptance distinct.
+
+The [planning capability](skills/plan-decomposition/SKILL.md) generates the hierarchy and refuses to overwrite an existing output directory. Try the complete planning example from the repository root:
+
+```bash
+python3 skills/plan-decomposition/scripts/render_plan.py examples/function-planning/manifest.json plans/example --repository .
+```
+
+The example creates plans only. Replace its source requirements and manifest with the new project's confirmed scope. Later progress is maintained through targeted edits; render structural revisions into a fresh staging directory. [The workflow comparison](docs/workflow-comparison.md) records what was migrated from the current development practice.
+
+To test agent behavior, use a new empty project directory and a fresh agent chat with the installed skills. Give it this small trial request:
+
+```text
+Use the agent-me development workflow to build a minimal local Python note CLI.
+Treat saving a note and listing notes as two independently delivered functions.
+Create the function subplans, compact progress, index and map before implementation.
+Each responsible agent must update its same subplan after meaningful work and verification.
+Implement first, with TDD disabled and only necessary checks. Keep this trial local.
+Return runnable commands, actual results and the updated plan and map paths.
+```
+
+Check both the runnable result and the records: two owned subplans, actual check evidence, current status and next action, with matching progress and map entries. Generator checks alone do not establish that an agent follows the workflow.
+
 ## Selected capabilities
 
 1. **Serena: code navigation.** Find functions, classes and references before changing existing code. Use the results to locate ownership and understand affected code.
@@ -39,9 +80,10 @@ git clone https://github.com/RicadoGz/agent-me.git
 cd agent-me
 mkdir -p "$HOME/.agents/skills"
 ln -s "$PWD/skills/software-development" "$HOME/.agents/skills/software-development"
+ln -s "$PWD/skills/plan-decomposition" "$HOME/.agents/skills/plan-decomposition"
 ```
 
-If a skill with that name already exists, inspect it before replacing anything.
+If either skill name already exists, inspect it before replacing anything. Both capabilities belong to the reusable workflow; the planning module stays beside the development combination so its relative references remain portable.
 
 Invoke the combination with:
 

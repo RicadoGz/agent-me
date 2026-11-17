@@ -20,7 +20,9 @@ Subagent (general-purpose):
 
     ## What Was Requested
 
-    Read the task brief: [BRIEF_FILE]
+    Read the owned function plan: [OWNED_SUBPLAN], then its scoped
+    task brief: [BRIEF_FILE]. The owned subplan is the execution and
+    handoff contract; a temporary brief or report does not replace it.
 
     Global constraints from the spec/design that bind this task:
     [GLOBAL_CONSTRAINTS]
@@ -72,8 +74,8 @@ Subagent (general-purpose):
 
     ## Tests
 
-    The implementer already ran the tests and reported results with TDD
-    evidence for exactly this code. Do not re-run the suite to confirm their
+    The implementer already ran the necessary checks and reported commands
+    and observed results for exactly this code. Do not re-run the suite to confirm their
     report. Run a test only when reading the code raises a specific doubt
     that no existing run answers — and then a focused test, never a
     package-wide suite, race detector run, or repeated/high-count loop. If
@@ -111,6 +113,12 @@ Subagent (general-purpose):
     If a requirement cannot be verified from this diff alone (it lives in
     unchanged code or spans tasks), report it as a ⚠️ item instead of
     broadening your search.
+
+    Check that the owner updated the same subplan with a status, source
+    and evidence consistent with the actual change, remaining acceptance
+    and next action. Missing or stale plan updates are a delivery gap to
+    return to the owner. The coordinator maintains shared progress and
+    matching PLAN.md or MAP.md statuses; the reviewer stays read only.
 
     ## Part 2: Code Quality
 
@@ -188,16 +196,17 @@ Subagent (general-purpose):
 ```
 
 **Placeholders:**
+- `[OWNED_SUBPLAN]` — REQUIRED: the maintained function plan owned by the implementer
 - `[MODEL]` — REQUIRED: reviewer model per SKILL.md Model Selection
-- `[BRIEF_FILE]` — REQUIRED: the task brief file (`bash scripts/task-brief PLAN N`,
-  run by its absolute path, from the working tree you're executing in,
-  prints the path; same file the implementer worked from)
+- `[BRIEF_FILE]` — the maintained owned SUBPLAN.md itself or an optional
+  scoped dispatch brief pointing to it. For legacy flat task plans only,
+  `scripts/task-brief PLAN N` can produce a supporting brief.
 - `[GLOBAL_CONSTRAINTS]` — the binding requirements copied verbatim from
   the plan's Global Constraints section or the spec: exact values, formats,
   and stated relationships between components (not process rules — those
   are already in this template)
-- `[REPORT_FILE]` — REQUIRED: the file the implementer wrote its detailed
-  report to
+- `[REPORT_FILE]` — the owned subplan checkpoint or its linked substantial
+  evidence report, as selected in the dispatch
 - `[BASE_SHA]` — commit before this task
 - `[HEAD_SHA]` — current commit
 - `[DIFF_FILE]` — REQUIRED: the path the controller wrote the review

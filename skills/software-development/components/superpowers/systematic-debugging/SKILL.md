@@ -169,24 +169,14 @@ You MUST complete each phase before proceeding to the next.
 
 **Fix the root cause, not the symptom:**
 
-1. **Create Failing Test Case**
-   - Simplest possible reproduction
-   - Automated test if possible
-   - One-off test script if no framework
-   - MUST have before fixing
-   - Use the `superpowers:test-driven-development` skill for writing proper failing tests
+1. **Implement Single Fix**
+   Address the diagnosed root cause with one scoped change. Preserve unrelated behavior and existing acceptance expectations.
 
-2. **Implement Single Fix**
-   - Address the root cause identified
-   - ONE change at a time
-   - No "while I'm here" improvements
-   - No bundled refactoring
+2. **Choose Necessary Coverage**
+   Reuse existing checks for the reported behavior. Add a focused regression case only when existing coverage leaves a material gap. A manual reproduction or integrity check can be sufficient for a low impact change.
 
 3. **Verify Fix**
-   - Test passes now?
-   - No other tests broken?
-   - Issue actually resolved?
-   - Use the `superpowers:verification-before-completion` skill before claiming success
+   Run the relevant check, inspect its output and confirm the reported issue is resolved. Broaden checks only for relevant changes, failures or unresolved concerns. Use `superpowers:verification-before-completion` before claiming success.
 
 4. **If Fix Doesn't Work**
    - STOP
@@ -248,7 +238,7 @@ If you catch yourself thinking:
 | "Issue is simple, don't need process" | Simple issues have root causes too. Process is fast for simple bugs. |
 | "Emergency, no time for process" | Systematic debugging is FASTER than guess-and-check thrashing. |
 | "Just try this first, then investigate" | First fix sets the pattern. Do it right from the start. |
-| "I'll write test after confirming fix works" | Untested fixes don't stick. Test first proves it. |
+| "Every fix needs a new test suite" | Reuse existing checks and add only necessary regression coverage. |
 | "Multiple fixes at once saves time" | Can't isolate what worked. Causes new bugs. |
 | "Reference too long, I'll adapt the pattern" | Partial understanding guarantees bugs. Read it completely. |
 | "I see the problem, let me fix it" | Seeing symptoms ≠ understanding root cause. |
@@ -261,7 +251,7 @@ If you catch yourself thinking:
 | **1. Root Cause** | Read errors, reproduce, check changes, gather evidence | Understand WHAT and WHY |
 | **2. Pattern** | Find working examples, compare | Identify differences |
 | **3. Hypothesis** | Form theory, test minimally | Confirmed or new hypothesis |
-| **4. Implementation** | Create test, fix, verify | Bug resolved, tests pass |
+| **4. Implementation** | Implement fix, select necessary coverage, verify | Reported behavior resolved with relevant evidence |
 
 ## When Process Reveals "No Root Cause"
 

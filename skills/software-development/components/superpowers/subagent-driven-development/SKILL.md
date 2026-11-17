@@ -7,6 +7,8 @@ description: Use when executing implementation plans with independent tasks in t
 
 Execute plan by dispatching a fresh implementer subagent per task, a task review (spec compliance + code quality) after each, and a broad whole-branch review at the end.
 
+Implement the approved behavior first. Reuse existing checks and add or update only necessary behavior or regression tests when a material coverage gap remains. For documentation or low impact edits, use an appropriate manual, syntax or integrity check. Repeat checks only after relevant changes, failures or unresolved concerns. Preserve existing acceptance expectations.
+
 **Why subagents:** You delegate tasks to specialized agents with isolated context. By precisely crafting their instructions and context, you ensure they stay focused and succeed at their task. They should never inherit your session's context or history — you construct exactly what they need. This also preserves your own context for coordination work.
 
 **Core principle:** Fresh subagent per task + task review (spec + quality) + broad final review = high quality, fast iteration
@@ -14,21 +16,26 @@ Execute plan by dispatching a fresh implementer subagent per task, a task review
 **Narration:** between tool calls, narrate at most one short line — the
 ledger and the tool results carry the record.
 
-**Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are the four named below, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
+**Continuous execution:** Continue confirmed function work without redundant permission checks. Update the owned plan and shared progress at meaningful checkpoints. Pause only the dependent work when a product decision or required authorization is genuinely missing.
 
-**Rulings, not stalls.** A running plan does not wait on a human. Conflicts,
-ambiguities, plan defects, a cap you would have asked to exceed — decide
-them. The spec is the binding authority, the plan is its argument, and your
-judgment settles what neither answers. Record every decision in the ledger as
-`Ruling: <what you decided> — <why> — <what it costs if wrong>`, and keep
-going. A wrong ruling costs rework your human partner can see and undo; a
-session parked on a question costs their whole day and buys nothing.
+**Decisions and clarification.** Handle routine implementation choices
+within the confirmed scope. Read existing context before asking questions.
+An unresolved product requirement, acceptance decision or scope change goes
+to the user before dependent implementation; continue useful independent
+work. Record confirmed decisions and evidence in the owned subplan.
 
-Four things stop you, and only these: an irreversible or destructive
-operation; a security-sensitive action; a side effect outside this worktree
-that norms say you ask about first (a merge, a push to a shared branch, a
-publish); and a plan so broken that every path forward is a guess. For those,
-stop and ask.
+Proceed within existing action and publication permissions. Ask only for a
+missing authorization or unresolved consequential decision, preserving
+permission already given. The combination's user instructions govern this
+workflow when an upstream template prescribes a different process.
+
+## Function subplan mode
+
+For function based work, the assigned SUBPLAN.md is the primary plan input. Read compact PROGRESS.md and that subplan, then only the contracts or parent sections needed to resolve an actual question. Record the responsible agent, scope, source, evidence, remaining acceptance and next action in the same plan at meaningful checkpoints. A temporary brief, report or workspace ledger supports this record and does not replace it.
+
+The owner updates its plan before reporting or starting a dependent function. The controller checks that actual update, then synchronizes shared progress, the parent checkpoint and changed PLAN.md or MAP.md statuses. Use a fresh scoped implementer for each independent function when delegating. Existing publication authorization controls commits, pushes and remote verification.
+
+The workspace helpers below apply when the chosen plan uses their multi task input format. Use the maintained function subplan mode for already decomposed projects; preserve their existing ownership and plan structure.
 
 ## When to Use
 
@@ -127,15 +134,19 @@ a ledger file, not only in todos.
 - `git clean -fdx` will destroy the workspace (it's git-ignored scratch); if
   that happens, recover from `git log`.
 
-Read the plan once, note its context and Global Constraints, and create a
-todo per task. If the plan names a Spec, read that too: the spec is the
-authority the plan argues from, and conflicts inside the plan resolve
-against it. A plan with no reachable spec gets a ledger note saying so —
-rulings made without one are provisional.
+For maintained function plans, read compact progress and the assigned
+SUBPLAN.md, including its current source requirements and constraints.
+Consult the relevant source or parent section only for an actual ambiguity,
+missing contract or contradiction. Preserve the source requirement's
+authority and record unresolved decisions in that subplan. For a legacy
+flat task plan, establish the same owned function records before execution;
+workspace bookkeeping supports those records rather than replacing them.
 
-Before dispatching Task 1, read [references/preflight.md](references/preflight.md)
-and run the conflict scan it describes. Its table and rulings go in the
-ledger.
+Before dispatch, check the current function's dependencies, interfaces and
+file ownership for concrete conflicts. Consult only relevant upstream
+handoffs. The [preflight reference](references/preflight.md) supports a
+new broad plan whose conflicts are not already resolved; it does not require
+reloading the complete parent plan for each function.
 
 ## Model Selection
 
@@ -200,23 +211,18 @@ child is noticed within minutes, not at the end of the session.
 Record BASE (`git rev-parse HEAD`) before dispatching — the review package
 and fix-round diffs need it.
 
-- **Task brief:** before dispatching an implementer, run this skill's
-  `bash scripts/task-brief PLAN_FILE N` by its absolute path, from the
-  working tree you're executing in — it extracts the task's full text to a
-  uniquely named file and prints the path. Compose the dispatch so the
-  brief stays the single source of
-  requirements. Your dispatch should contain: (1) one line on where this
-  task fits in the project; (2) the brief path, introduced as "read this
-  first — it is your requirements, with the exact values to use verbatim";
-  (3) interfaces and decisions from earlier tasks that the brief cannot
-  know; (4) your resolution of any ambiguity you noticed in the brief;
-  (5) the report-file path and report contract. Exact values (numbers,
-  magic strings, signatures, test cases) appear only in the brief. Never
-  make a subagent read the whole plan file.
-- **Report file:** name the implementer's report file after the brief
-  (brief `…/task-N-brief.md` → report `…/task-N-report.md`) and put it in
-  the dispatch prompt. The implementer writes the full report there and
-  returns only status, commits, a one-line test summary, and concerns.
+- **Owned function plan:** dispatch the maintained SUBPLAN.md path and
+  its continuous update responsibility, with compact progress, owned files,
+  interfaces, known dependency decisions, necessary checks and publication
+  permissions. Exact requirements remain in that plan or its linked source.
+- **Dispatch brief:** a scoped brief can carry operational details and point
+  to the owned plan. For a legacy flat task format, `scripts/task-brief` can
+  extract a brief when useful. It is not required for a maintained function
+  plan and never becomes a second authoritative execution plan.
+- **Report:** use the owned subplan's checkpoint for a small result or a
+  linked validation report for substantial evidence. Include the path in the
+  dispatch; preserve the plan and history when updating a checkpoint. The
+  owner returns its status, updated subplan and any relevant report path.
 - A dispatch prompt describes one task, not the session's history. Do not
   paste accumulated prior-task summaries ("state after Tasks 1-3") into
   later dispatches — a real session's dispatch hit 42k chars of which 99%

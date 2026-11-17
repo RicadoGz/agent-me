@@ -12,8 +12,14 @@ Subagent (general-purpose):
 
     ## Task Description
 
-    Read your task brief first: [BRIEF_FILE]
-    It contains the full task text from the plan.
+    Read compact progress: [PROGRESS_FILE]. Then read and take ownership of
+    [OWNED_SUBPLAN], the maintained plan for this function. Read [BRIEF_FILE]
+    for the scoped dispatch details. The brief supports the subplan; the
+    subplan remains your primary implementation and handoff record. Record
+    your identity and source reference there before implementation.
+
+    Consult only necessary dependency contracts or map sections. Read a
+    parent plan section only when the assigned subplan leaves a real question.
 
     ## Context
 
@@ -33,19 +39,25 @@ Subagent (general-purpose):
 
     Once you're clear on requirements:
     1. Implement exactly what the task specifies
-    2. Write tests (following TDD if task says to)
+    2. Reuse existing checks; add only necessary behavior or regression coverage after implementation
     3. Verify implementation works
-    4. Commit your work
-    5. Self-review (see below)
-    6. Report back
+    4. Update your owned subplan with status, actual checks and evidence,
+       remaining acceptance or blockers, and next concrete action. Keep
+       its top status consistent and preserve superseded history.
+    5. Self-review (see below), then commit only within the explicit
+       publication permissions in your assignment.
+    6. Report the exact subplan path and checkpoint with your result.
+       The controller verifies the edit and updates shared progress,
+       parent checkpoints and matching PLAN.md or MAP.md entries.
 
     Work from: [directory]
 
     **While you work:** If you encounter something unexpected or unclear, **ask questions**.
     It's always OK to pause and clarify. Don't guess or make assumptions.
 
-    While iterating, run the focused test for what you're changing; run the
-    full suite once before committing, not after every edit.
+    Run focused checks for the changed behavior. Broaden validation only when
+    relevant changes, failures or unresolved risk justify it. Use manual or
+    integrity checks for documentation and low impact edits.
 
     ## You Do Not Dispatch Subagents
 
@@ -110,8 +122,8 @@ Subagent (general-purpose):
 
     **Testing:**
     - Do tests actually verify behavior (not just mock behavior)?
-    - Did I follow TDD if required?
-    - Are tests comprehensive?
+    - Does existing coverage already answer the relevant behavior questions?
+    - Are any added tests necessary for a material behavior or regression gap?
     - Is the test output pristine (no stray warnings or noise)?
 
     If you find issues during self-review, fix them now before reporting.
@@ -120,19 +132,21 @@ Subagent (general-purpose):
 
     If the task review finds issues, you will be resumed with the findings.
     Fix them, re-run the tests that cover the amended code, and append a fix
-    report to your report file: what you changed, the covering tests you
+    report to your report file and update the same owned subplan: what you changed, the covering tests you
     ran, the command, and the output. Reviewers will not re-run tests for
     you — your report is the test evidence. Then reply with the same short
     status contract as your first report.
 
     ## Report Format
 
-    Write your full report to [REPORT_FILE]:
+    Record your checkpoint in [OWNED_SUBPLAN]. Write substantial evidence
+    to [REPORT_FILE] when a separate report is useful. If both paths name
+    the same file, update its checkpoint sections and preserve its existing
+    scope and history. Report:
     - What you implemented (or what you attempted, if blocked)
     - What you tested and test results
-    - **TDD Evidence** (if TDD was required for this task):
-      - RED: command run, relevant failing output before implementation, and why the failure was expected
-      - GREEN: command run and relevant passing output after implementation
+    - Relevant check commands, observed results and any remaining coverage limits
+    - Owned SUBPLAN.md path, recorded owner and current checkpoint update
     - Files changed
     - Self-review findings (if any)
     - Any issues or concerns
@@ -143,6 +157,7 @@ Subagent (general-purpose):
     - Commits created (short SHA + subject)
     - One-line test summary (e.g. "14/14 passing, output pristine")
     - Your concerns, if any
+    - The owned subplan path and current checkpoint
     - The report file path
 
     If BLOCKED or NEEDS_CONTEXT, put the specifics in the final message

@@ -7,7 +7,7 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write implementation plans for an engineer who has not seen this codebase or this spec. Assume they write idiomatic code in the project's language once they know the exact interface and the exact test, and that they will make a reasonable choice wherever the plan leaves one open. What they cannot know is what you decided: which files, which names and signatures, which values from the spec, which tests prove each task. Document those. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write implementation plans for an engineer who has not seen this codebase or this spec. Assume they write idiomatic code in the project's language once they know the exact interface and the exact test, and that they will make a reasonable choice wherever the plan leaves one open. What they cannot know is what you decided: which files, which names and signatures, which values from the spec, which tests prove each task. Document those. Give them the whole plan as bite-sized tasks. DRY. YAGNI. Implement the approved behavior first and select only necessary validation. Preserve the user's commit permissions.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
@@ -15,6 +15,12 @@ Write implementation plans for an engineer who has not seen this codebase or thi
 
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
+
+## Maintained function plans
+
+Each independently delivered function needs its own directory and owned SUBPLAN.md before implementation. Use the combination's plan decomposition capability to create compact progress, a selection index and a linked dependency map when absent. For an existing project, maintain its current function plans instead of producing a second competing execution plan. The assigned subplan contains scope, inputs, outputs, dependencies, acceptance, owner, current evidence, remaining work and next action. Parent plans provide shared context only when needed.
+
+This function layout takes precedence over the generic single plan destination above when a project uses function based execution. Generated scaffolds are initial planning output; later checkpoints use targeted owner edits and coordinator progress or map updates, preserving history.
 
 ## Scope Check
 
@@ -33,8 +39,8 @@ This structure informs the task decomposition. Each task should produce self-con
 
 ## Task Right-Sizing
 
-A task is the smallest unit that carries its own test cycle and is worth a
-fresh reviewer's gate. When drawing task boundaries: fold setup,
+A task is the smallest independently useful deliverable with a meaningful
+review surface and necessary validation. When drawing task boundaries: fold setup,
 configuration, scaffolding, and documentation steps into the task whose
 deliverable needs them; split only where a reviewer could meaningfully
 reject one task while approving its neighbor. Each task ends with an
@@ -43,11 +49,10 @@ independently testable deliverable.
 ## Step Granularity
 
 **Each step is one action with a checkable result:**
-- "Write the failing test" - step
-- "Run it to make sure it fails" - step
-- "Implement the minimal code to make the test pass" - step
-- "Run the tests and make sure they pass" - step
-- "Commit" - step
+1. Implement the approved behavior in its owned file.
+2. Reuse existing checks or add a focused behavior case only for a material gap.
+3. Run the necessary check and inspect its result.
+4. Commit only within the task's existing authorization.
 
 ## Plan Document Header
 
@@ -56,7 +61,7 @@ independently testable deliverable.
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use numbered actions with checkable results.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -76,15 +81,7 @@ include this section.]
 
 ## Review Focus
 
-[The five input classes or failure modes the spec implies but no task's
-tests exercise that are most likely to bite a person using this software
-— one line each, naming the input or condition and the behavior a
-reasonable person would expect, most likely first. The spec is a vision
-document: it says what the software must do, not everything it will
-meet, and its silence on an input is not permission for that input to
-break the program. Write the list here, once, with the spec in front of
-you. Then, for each line, add the test that pins it to the task that
-owns the code, in that task's own step style.]
+[Material behavior risks not already answered by existing checks. Include only cases that need new coverage, with the owning task and expected behavior. If current coverage is sufficient, say so. Avoid an arbitrary number of new tests.]
 
 ---
 ```
@@ -97,7 +94,7 @@ owns the code, in that task's own step style.]
 **Files:**
 - Create: `exact/path/to/file.py`
 - Modify: `exact/path/to/existing.py:123-145`
-- Test: `tests/exact/path/to/test.py`
+- Test only if necessary: `tests/exact/path/to/test.py`
 
 **Interfaces:**
 - Consumes: [what this task uses from earlier tasks — exact signatures]
@@ -105,7 +102,13 @@ owns the code, in that task's own step style.]
   and return types. A task's implementer sees only their own task; this
   block is how they learn the names and types neighboring tasks use.]
 
-- [ ] **Step 1: Write the failing test**
+1. **Implement `function(input: InputType) -> ResultType` in `exact/path/to/file.py`.**
+
+State the required behavior and any implementation choice the interface leaves open.
+
+2. **Select necessary behavior or regression coverage.**
+
+Reuse an existing check when it covers the change. Add this case only if the behavior otherwise lacks meaningful coverage:
 
 ```python
 def test_specific_behavior():
@@ -113,23 +116,12 @@ def test_specific_behavior():
     assert result == expected
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+3. **Run the relevant check.**
 
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: FAIL with "function not defined"
+Run: `pytest tests/path/test.py::test_specific_behavior -v`
+Expected: PASS for the specified behavior. For documentation or low impact edits, name the sufficient manual or integrity check instead.
 
-- [ ] **Step 3: Implement `function(input: InputType) -> ResultType` in `exact/path/to/file.py`**
-
-One line on the approach when the signature and the test leave a choice
-(which library call, which data structure); a code block only for an
-algorithm they do not determine.
-
-- [ ] **Step 4: Run test to verify it passes**
-
-Run: `pytest tests/path/test.py::test_name -v`
-Expected: PASS
-
-- [ ] **Step 5: Commit**
+4. **Commit only if authorized.**
 
 ```bash
 git add tests/path/test.py src/path/file.py
@@ -170,7 +162,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
 
-**4. Review Focus:** For each input class or failure mode the spec implies, is there a task whose tests exercise it? The five uncovered ones most likely to bite a person go in the Review Focus section, and each line there gets its test added to the owning task. An empty section means you checked and found none, not that you skipped the check.
+**4. Review Focus:** Check material behavior risks against existing coverage. Identify only necessary additions and assign them to the owning task. State when existing checks are sufficient.
 
 **5. Proportion:** Compare the plan's length to the spec's. A plan several times longer than the spec it implements is a transcript of the program, not a plan. If code blocks are most of the document, replace bodies with signatures, test names and assertions, and check that each step is still unambiguous.
 

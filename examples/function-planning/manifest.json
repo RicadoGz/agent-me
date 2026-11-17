@@ -1,0 +1,55 @@
+{
+  "title": "Local note planning example",
+  "sources": {
+    "requirements": "examples/function-planning/requirements.md"
+  },
+  "decisions": {},
+  "phases": {
+    "foundation": "Local note functions"
+  },
+  "code_evidence": [],
+  "requirement_coverage": {
+    "R1": ["F001"],
+    "R2": ["F002"]
+  },
+  "units": [
+    {
+      "id": "F001",
+      "slug": "save_note",
+      "title": "Validate and save a note",
+      "phase": "foundation",
+      "goal": "Persist one validated note and return its identity.",
+      "owner": "Assigned note storage implementer",
+      "source_sections": ["requirements R1"],
+      "inputs": ["A title and body"],
+      "outputs": ["A durable note identity or validation error"],
+      "depends_on": [],
+      "planned_files": ["src/notes.py"],
+      "planned_symbols": ["save_note"],
+      "acceptance": [
+        "A valid title and body produce one saved note and identity.",
+        "A blank title returns a validation error and creates no record."
+      ],
+      "decision_dependencies": []
+    },
+    {
+      "id": "F002",
+      "slug": "list_notes",
+      "title": "List saved notes",
+      "phase": "foundation",
+      "goal": "Return saved note titles and identities without mutation.",
+      "owner": "Assigned note listing implementer",
+      "source_sections": ["requirements R2"],
+      "inputs": ["The local note store"],
+      "outputs": ["A collection of saved titles and identities"],
+      "depends_on": ["F001"],
+      "planned_files": ["src/notes.py"],
+      "planned_symbols": ["list_notes"],
+      "acceptance": [
+        "A saved note appears with its original title and identity.",
+        "An empty store returns an empty collection and is unchanged."
+      ],
+      "decision_dependencies": []
+    }
+  ]
+}
