@@ -1,6 +1,6 @@
 # F001: Package function plans and map generation
 
-**Status:** Complete for scoped implementation and independent generator acceptance. Assembled package verification and publication remain coordinator owned and pending.
+**Status:** Complete for scoped implementation and independent generator acceptance. The coordinator published the F001 delivery and verified its remote SHA; assembled package verification and final shared records remain coordinator owned.
 **Owner:** `/root/portable_planning`, fresh scoped implementation agent.
 
 ## Scope
@@ -17,13 +17,15 @@ A standalone sample generates one subplan per function, compact progress, linked
 
 ## Current checkpoint
 
+November 16, 2026 publication checkpoint: the coordinator reports the F001 delivery published at `4079fc1540221fe08de6ebf402040de7cc59c9bf`, with the actual remote SHA verified. This is coordinator supplied publication evidence; this implementation owner did not commit, push or repeat the remote check. The scoped implementation and independent acceptance below remain unchanged. No code or check was rerun for this plan update.
+
 November 16, 2026: the coordinator supplied the independent acceptance result from `/root/planning_acceptance`, recorded in [F003 verification](../F003_verification/SUBPLAN.md) and `skills/plan-decomposition/tests/test_render_plan.py`. The reported command `python3 -B -m unittest discover -s skills/plan-decomposition/tests -v` returned exit zero: three tests passed, zero failures or skips. The independently checked renderer SHA256 remains `a8ade7aa86626d4570ffb0a200857d1d1772a0f1787767caa706b621660f4c50`.
 
 The three real CLI acceptance cases cover separate owned subplans and linked progress, index and map with dependency and inherited decision status, legacy unassigned owner compatibility, exact preservation of edited output on rejected regeneration, and rejection of unknown and cyclic dependencies before output creation. These results complete the approved F001 generator acceptance. They are attributed independent evidence, not checks rerun by this implementation owner. No code edit, further check, commit or push accompanied this checkpoint.
 
 ## Remaining limits
 
-The renderer generates planning scaffolds; it does not automatically maintain live ownership or prove application behavior. Owners and the coordinator follow the maintained plan responsibilities. The accepted cases cover the meaningful generation and preservation contract, not every possible malformed manifest. Assembled component integrity, installed copy consistency and actual remote delivery remain with the coordinator. No remote publication is claimed here.
+The renderer generates planning scaffolds; it does not automatically maintain live ownership or prove application behavior. Owners and the coordinator follow the maintained plan responsibilities. The accepted cases cover the meaningful generation and preservation contract, not every possible malformed manifest. Assembled component integrity, installed copy consistency and publication of final shared records remain with the coordinator. The F001 delivery publication is established only by the attributed coordinator checkpoint above.
 
 ## Earlier implementation checkpoint
 
@@ -37,4 +39,4 @@ Independent verification interface: `validate(data)` raises before output writes
 
 ## Next action
 
-The coordinator reuses the passing independent result while the renderer remains unchanged, completes assembled package and installed copy checks, then publishes within the authorized repository scope and verifies the remote SHA. `/root/portable_planning` retains continuous ownership of this same F001 plan and any concrete planning generator defect. The coordinator maintains shared progress and indexes. No additional F001 check or source change is required for this acceptance checkpoint.
+Preserve the published F001 implementation and passing independent result. `/root/portable_planning` retains continuous ownership of this same plan and supports a later concrete planning generator defect with a scoped correction and necessary checks. The coordinator completes assembled verification and publishes the final shared progress and index records. No additional F001 source change or check is scheduled.

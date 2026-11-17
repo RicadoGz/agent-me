@@ -25,6 +25,8 @@ Independent read only audit by `/root/workflow_audit` identified two remaining r
 
 The comparison and portable boundaries are recorded in `docs/workflow-comparison.md`. The shared explicit instruction file includes function plans as the primary execution unit, no TDD, necessary tests, owner maintenance, scoped context, handoffs and authorized per function remote publication. No Roki product specification, application behavior or host specific runtime configuration was copied into the generic workflow.
 
+Publication checkpoint: the focused F002 payload was committed and pushed as `d053621c47727613983c70828e560a7d012c8bf7`; a subsequent `git ls-remote` readback matched that exact main SHA. Source instructions, examples and the comparison record are delivered. This confirmation updates the same owned plan without rerunning unchanged validation.
+
 ## Next action
 
-Publish the focused F002 alignment and then complete assembled installation and publication checks under F003. This coordinator retains F002 ownership and updates this plan for any later concrete instruction defect. F001 remains owned by `/root/portable_planning`; shared records remain coordinator owned.
+Complete final shared checkpoint publication under F003, then support later concrete instruction defects. This coordinator retains F002 ownership and updates this same plan when the workflow changes. F001 remains owned by `/root/portable_planning`; shared records remain coordinator owned.
