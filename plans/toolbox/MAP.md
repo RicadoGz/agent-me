@@ -3,7 +3,7 @@
 1. [F001 portable planning](functions/F001_portable_planning/SUBPLAN.md) produced the published reusable function plan generator and templates.
 2. [F002 workflow alignment](functions/F002_workflow_alignment/SUBPLAN.md) connected the published project instructions, catalog, shared user rules and worker prompts to that planning capability.
 3. [F003 verification](functions/F003_verification/SUBPLAN.md) completed scoped checks of the assembled outputs of F001 and F002; their payload publication is verified. Final shared record publication is coordinator owned.
-4. [F004 开发前说明与单点教学](functions/F004_dev_brief/SUBPLAN.md) adds `skills/dev-brief` and routes the catalog, combination and project entrypoint to it. Format, three scenario behavior and installation checks passed; publication is pending. It changes collaboration instructions, not application behavior.
+4. [F004 开发前说明与单点教学](functions/F004_dev_brief/SUBPLAN.md) adds `skills/dev-brief` and routes the catalog, combination and project entrypoint to it. Format, three scenario behavior and installation checks passed. Library and Roki tooling payloads are published with confirmed remote identities. It changes collaboration instructions, not application behavior.
 
 ```mermaid
 flowchart LR
