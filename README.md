@@ -6,6 +6,8 @@ The agent reads a skill catalog, selects the capabilities needed for the current
 
 Start with the [skill catalog](skills/software-development/SKILLS.md). The [combination entrypoint](skills/software-development/SKILL.md) explains how the roles work together.
 
+The [development brief](skills/dev-brief/SKILL.md) runs before a new development task: inspect actual code, explain the plan and important decisions, teach one relevant point, and describe verification in plain Chinese. It supports explicit invocation with `$dev-brief` and automatic selection through the development combination.
+
 ## Default development workflow
 
 Every independently delivered function has its own directory and maintained `SUBPLAN.md`. This is the implementation and handoff document used by its responsible agent. Start from compact progress and that plan; read broader source plans only when the current task leaves an actual question.
@@ -81,6 +83,7 @@ cd agent-me
 mkdir -p "$HOME/.agents/skills"
 ln -s "$PWD/skills/software-development" "$HOME/.agents/skills/software-development"
 ln -s "$PWD/skills/plan-decomposition" "$HOME/.agents/skills/plan-decomposition"
+ln -s "$PWD/skills/dev-brief" "$HOME/.agents/skills/dev-brief"
 ```
 
 If either skill name already exists, inspect it before replacing anything. Both capabilities belong to the reusable workflow; the planning module stays beside the development combination so its relative references remain portable.

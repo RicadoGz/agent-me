@@ -2,6 +2,8 @@
 
 Read this catalog before selecting tools for a software development task. Choose only the stages relevant to the current request, then open their instructions. Apply [Ricardo's reusable development instructions](references/ricardo-development-rules.md), including no TDD and necessary tests only, before following component templates.
 
+Start a new development task or meaningful behavior change with [dev brief](../dev-brief/SKILL.md): inspect code and explain Plan, Decision, Learning and Verification before implementation. The skill preserves already granted authorization, important unresolved decisions and requests to review without coding.
+
 1. **Code navigation: Serena.** Locate functions, classes and references to understand where behavior lives and what a change could affect. Use it when reading or changing existing code, following the [setup and activation notes](references/serena.md).
 
 2. **Requirements clarification: Matt Pocock grilling.** Turn unresolved requirements into focused questions with recommended answers before implementation. Load [grilling](components/mattpocock/grilling/SKILL.md) when behavior, scope or acceptance remains unclear, preserving decisions already settled.

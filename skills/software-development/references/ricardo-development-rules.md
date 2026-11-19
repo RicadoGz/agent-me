@@ -4,6 +4,10 @@ These are reusable instructions for development agents working with Ricardo. The
 
 Confirmed November 16, 2026.
 
+## 开发前说明与单点教学
+
+2026 年 11 月 18 日，Ricardo 确认将这套沟通方式沉淀为稳定 skill。新一轮开发前使用 [dev brief](../../dev-brief/SKILL.md)，先查实际代码和需求，再用简单中文说明 Plan、Decision、Learning、Verification。由该 skill 维护具体表达、教学深度和确认边界；本规则不复制产品需求，也不把一次性的字数限制固定为默认。
+
 ## Function plans are the execution unit
 
 Every independently delivered function has its own directory and `SUBPLAN.md` before implementation. Use `plans/<project>/functions/<id>_<slug>/SUBPLAN.md`, with a stable ID and a scope small enough to implement and verify independently. Keep setup with the capability it enables. Reuse and maintain an existing function plan rather than creating a new plan for every edit.

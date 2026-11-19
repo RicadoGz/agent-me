@@ -4,6 +4,8 @@ For implementation work, start with the project's compact PROGRESS.md and assign
 
 For software implementation, feature development or onboarding an existing codebase, first read [the skill catalog](skills/software-development/SKILLS.md), then load the relevant parts of [the combination](skills/software-development/SKILL.md).
 
+Before a new development task or meaningful behavior change, use [the development brief](skills/dev-brief/SKILL.md). Inspect current code first, then explain the plan, important decisions, one learning point and verification in plain Chinese. Preserve existing authorization and read only requests.
+
 Read [Ricardo's reusable development instructions](skills/software-development/references/ricardo-development-rules.md) when using this template. Keep his confirmed workflow requests current there and apply them to delegated agents; these are agent collaboration rules, not application behavior tracking.
 
 Select capabilities as the task progresses. Preserve confirmed requirements and use independent implementation, test authoring, verification and review roles where the task needs them.

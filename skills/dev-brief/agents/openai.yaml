@@ -1,0 +1,4 @@
+interface:
+  display_name: "开发前先说清楚"
+  short_description: "先读代码，用中文讲清开发计划、重要决定、一个知识点和验证方法"
+  default_prompt: "使用 $dev-brief，先检查代码和需求，用简单中文说明计划、重要决定、一个知识点和验证方法。"

@@ -7,6 +7,8 @@ description: Software development combo for existing codebases and new features.
 
 Read [SKILLS.md](SKILLS.md) first. Select the stages needed for the actual request and read their linked instructions. A small correction need not activate every stage.
 
+Before a new development task or meaningful behavior change, use [dev brief](../dev-brief/SKILL.md). It covers code inspection, the four part explanation, one learning point and the boundary between ordinary technical choices and important user decisions. Reuse the settled brief within the same scope.
+
 Implement the approved behavior first. Reuse existing checks and add or update only necessary behavior or regression tests when a material coverage gap remains. For documentation or low impact edits, use an appropriate manual, syntax or integrity check. Repeat checks only after relevant changes, failures or unresolved concerns. Preserve existing acceptance expectations.
 
 Every independently delivered function has its own directory and owned SUBPLAN.md before implementation. Resume from compact PROGRESS.md and that assigned subplan; it is the primary execution and handoff document. Consult dependency contracts, map sections or parent plan sections only when the current task is unclear, incomplete, stale or contradictory. Give each worker scoped context rather than the complete roadmap. Follow the plan ownership and handoff responsibilities below at meaningful checkpoints.
